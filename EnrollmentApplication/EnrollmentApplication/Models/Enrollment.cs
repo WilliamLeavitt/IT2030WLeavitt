@@ -31,5 +31,8 @@ namespace EnrollmentApplication.Models
         [Required]
         [Range(2018,Int32.MaxValue,ErrorMessage ="Cannot be enrolled before 2018")]
         public virtual int EnrollmentYear { get; set; }
+
+        [InvalidChars("-", ErrorMessage ="No hyphens allowed in Notes")]
+        public virtual string Notes { get; set; }
     }
 }
