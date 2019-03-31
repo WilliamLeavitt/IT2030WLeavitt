@@ -1,0 +1,25 @@
+﻿@model MVCMusicStoreApplication.Models.Album
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<br />
+@Html.DisplayFor(model => model.Title)
+
+<br />
+<img src="@Url.Content(Model.AlbumArtUrl) " alt="Album Cover" />
+
+<br />
+<br />
+Artist: @Html.DisplayFor(model => model.Artist.Name)
+<br />
+<br />
+Price: @Html.DisplayFor(model => model.Price)
+
+<br />
+<br />
+<input type="button" value="Add to Cart" onclick="location.href='@Url.Action("AddToCart", "ShoppingCart", new { id = Model.AlbumId})'" />
+     
