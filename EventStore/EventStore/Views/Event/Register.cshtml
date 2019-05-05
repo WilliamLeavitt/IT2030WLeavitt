@@ -1,0 +1,37 @@
+﻿@model EventStore.Models.Event
+
+@section Scripts{
+    <script src="~/Scripts/Apps/EventScripts.js"></script>
+}
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h1>Register for this Event</h1>
+
+<h2>Sale ends on @Model.StartDate.ToShortDateString()</h2>
+
+<br />
+
+<table class="register-table">
+    <tr>
+        <th>@Model.Title</th>
+        <th>Number of Tickets</th>
+    </tr>
+
+    <tr>
+        <td>FREE</td>
+        <td><input id="tickets" type="text" /></td>
+    </tr>
+</table>
+
+<br />
+<input type="button" value="Checkout" onclick="location.href='@Url.Action("AddToCart", "Cart", new { id = Model.EventID })?ordered=' +$('#tickets').val()" />
+
+<br />
+<br />
+
+<p class="button">
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</p>

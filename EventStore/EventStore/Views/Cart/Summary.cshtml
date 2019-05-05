@@ -1,0 +1,20 @@
+﻿@model EventStore.Models.CartViewModel
+
+@{
+    ViewBag.Title = "Summary";
+}
+
+<h1>Order Summary</h1>
+
+<p>Order Number:  <script>document.write((Math.floor(Math.random() * 200))); </script> </p>
+
+<p>@Model.CartItems.Last().EventSelected.Title</p>
+
+<p>Tickets ordered: @Model.CartItems.Last().Tickets</p>
+
+<br />
+<br />
+
+<p class="button" style="align-self: center">
+    @Html.ActionLink("Back to Tickets", "Index", "Cart")
+</p>

@@ -1,0 +1,42 @@
+﻿@model EventStore.Models.CartViewModel
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+@section Scripts{
+    <script src="~/Scripts/Apps/EventScripts.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+
+<h2>Your Orders</h2>
+
+<br />
+<div id="update-message"></div>
+<div>
+    <table>
+        <tr>
+            <th>Event</th>
+            <th>Date Ordered</th>
+            <th>Tickets Ordered</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.CartItems)
+        {
+            <tr id="record-@item.RecordId">
+                <td>@item.EventSelected.Title</td>
+                <td>@item.DateCreated</td>
+                <td>@item.Tickets</td>
+                <td><a href="" data-id="@item.RecordId" class ="RemoveLink">Remove</a></td>
+            </tr>
+        }
+
+    </table>
+
+    <p class="button">
+        @Html.ActionLink("Back to Home", "Index", "Event")
+    </p>
+
+</div>
+

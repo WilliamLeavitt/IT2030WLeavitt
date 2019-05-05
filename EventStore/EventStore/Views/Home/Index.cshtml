@@ -1,0 +1,52 @@
+﻿@model IEnumerable<EventStore.Models.Event>
+
+@{
+    ViewBag.Title = "Welcome";
+}
+
+@section Scripts{
+    <script src="~/Scripts/Apps/EventScripts.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}
+
+
+<img src="~/Content/Images/audience-celebration-concert-1190297.jpg" />
+
+
+<div id="lastminutedeal">
+    @Ajax.ActionLink("Click here for last minute deals!",
+    "LastMinuteDeal",
+    null,
+    new AjaxOptions
+    {
+        UpdateTargetId= "lastminutedeal",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "GET"
+    },
+    new { @class = "btn btn-primary" })
+</div>
+<br>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Search for an Event</div>
+    <div class="panel-body">
+        @using (Ajax.BeginForm("EventSearch", "Event", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "searchFailed",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "searchresults"
+        }))
+        {
+            <input type="text" name="q" value="Event Title" />
+            <input type="text" name="a" value="City" />
+            <input type="submit" value="search" />
+            <img id="ajax-loader"
+                 src="@Url.Content("~/Content/Images/ajax-loader.gif")"
+                 style="display:none" />
+        }
+        <div id="searchresults"></div>
+    </div>
+</div>
+
